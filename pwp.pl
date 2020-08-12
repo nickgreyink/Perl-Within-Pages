@@ -1,5 +1,10 @@
 #!/usr/bin/perl
 
+# This is the file you came for.
+# Trying to keep it as one file for
+# portability.
+
+# Have
 use strict;
 use warnings;
 use 5.001;
