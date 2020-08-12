@@ -4,18 +4,34 @@
 # Trying to keep it as one file for
 # portability.
 
-# Have
+# Use strict to make sure pwp follows perl
+# syntax.
 use strict;
+# Use warnings to maximum warnings for pwp
+# in case it does not work.
 use warnings;
+# I have it set to use original perl 5.
+# if it can run there it should be able to
+# run in any perl 5.
 use 5.001;
 
-sub inline_print {
-	my $thing = $_[0];
-	$thing =~ s/<pwp//;
-	$thing =~ s/pwp>$//;
-	$thing =~ s/<pwp/";/g;
-	$thing =~ s/pwp>/print"/g;
-	return $thing;
+# replaces
+# <pwp with ";
+# pwp> with print"
+# to allow html tp be used
+
+# also removes the first and last pwp's
+# to allow page text to be placed in
+# variable $page_text
+sub inline_print{
+# place the text of the page in variable
+# $page_text
+	my $page_text = $_[0];
+	$page_text =~ s/<pwp//;
+	$page_text =~ s/pwp>$//;
+	$page_text =~ s/<pwp/";/g;
+	$page_text =~ s/pwp>/print"/g;
+	return $page_text;
 }
 
 
@@ -44,4 +60,4 @@ if ($filename ne '') {
 	}
 }
 
-print inline_print($page_string);
+eval inline_print($page_string);
