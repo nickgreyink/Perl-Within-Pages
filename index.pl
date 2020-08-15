@@ -1,6 +1,11 @@
 <pwp
 	print "cool";
-	
+	my $i = 0;
+	while($i < 10){
+		print "happy";
+		# thing
+		$i++;
+	}
 	if (1==1){
 		print "nice";
 	}

@@ -87,7 +87,7 @@ if ($filename ne '') {
 # and add each row to a variable
 	while (my $row = <$fh>) {
 		chomp $row;
-		$page_string .= $row;
+		$page_string = $page_string . $row . "\n";
 	}
 }
 
