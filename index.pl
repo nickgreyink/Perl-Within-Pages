@@ -15,7 +15,7 @@ pwp>
 <p>thing</p>
 
 <pwp
-	print "fart this thing k";
+	print "this thing k";
 pwp>
 
 <p>this right here</p>
