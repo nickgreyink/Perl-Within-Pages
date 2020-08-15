@@ -10,7 +10,7 @@ use strict;
 # Use warnings to maximum warnings for pwp
 # in case it does not work.
 use warnings;
-# I have it set to use original perl 5.
+# I have it set to use original perl 5.001.
 # if it can run there it should be able to
 # run in any perl 5.
 use 5.001;
@@ -27,21 +27,22 @@ sub inline_print{
 # place the text of the page in variable
 # $page_text
 	my $page_text = $_[0];
-# replaces the first instance for <pwp with nothing
-# othereise you would not be able to have text
-# before you made the first <pwp
-	$page_text =~ s/<pwp//;
-# replaces the last pwp> with nothing
-# or you couldn't have text after your last
-# pwp>
-	$page_text =~ s/pwp>$//;
 # replaces all the other <pwp's with "; to
 # end the perl print statement
 	$page_text =~ s/<pwp/";/g;
 # replaces all the other pwp>'s with
 # print" to start a perl print statement
 # to include html and othet text
-	$page_text =~ s/pwp>/print"/g;
+	$page_text =~ s/pwp>/print "/g;
+
+	if(substr($page_text, 0, 4) ne "<pwp"){
+		substr($page_text, 0, 0) = 'print "';
+	}
+	if(substr($page_text, -4, 4) ne "pwp>"){
+		$page_text = $page_text . '";';
+	}
+
+	$page_text =~ s/\t//g;;
 	return $page_text;
 }
 

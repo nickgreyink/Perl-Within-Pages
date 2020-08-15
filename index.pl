@@ -1,14 +1,16 @@
-# This is just a test page to see if it pulls up
-# and displays perl files with html embedded in it.
-
-# It can be edited when new stuff needs to be tested.
-
+<pwp
+	print "cool";
+	
+	if (1==1){
+		print "nice";
+	}
+pwp>
 <p>hi there</p>
 
 <p>thing</p>
 
 <pwp
-
-print "fart this thing k";
-
+	print "fart this thing k";
 pwp>
+
+<p>this right here</p>
