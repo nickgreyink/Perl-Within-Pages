@@ -10,10 +10,54 @@ use strict;
 # Use warnings to maximum warnings for pwp
 # in case it does not work.
 use warnings;
+
+use Cwd;
+use Cwd 'abs_path';
+use File::Basename;
+
 # I have it set to use original perl 5.001.
 # if it can run there it should be able to
 # run in any perl 5.
 use 5.001;
+
+my $abs_path = "";
+
+sub pwp_include{
+	my $page_file = $_[0];
+	#print "\n" . $page_file . "\n";
+	my $page_string = "";
+	my $dir = getcwd;
+	my @page_file_array = split('/', $page_file);
+	my $page_final_index = $page_file_array[@page_file_array-1];
+	my @directory_path = split('/', dirname(abs_path($page_file)));
+
+	for(my $i = 0; $i <= $#directory_path; $i++){
+		if($directory_path[$i] eq ".."){
+			$directory_path[$i] = ".";
+		}elsif($directory_path[$i] eq "."){
+			$directory_path[$i] = undef;
+		}
+	}
+	#print "\n" . join('/', @directory_path) . "/" . $page_final_index . "\n\n";
+	$abs_path = join('/', @directory_path) . "/" . $page_final_index;
+	#print $abs_path . "\n";
+	if ($abs_path ne '') {
+	# open the file
+	#print $abs_path . "\n";
+		open(my $fh, '<', $abs_path)
+		or die "Could not open file '$abs_path' $!";
+
+	# read each line of the page
+	# and add each row to a variable
+		while (my $row = <$fh>) {
+			chomp $row;
+			$page_string = $page_string . $row . "\n";
+		}
+	}else{
+		print "This file does not exist.";
+	}
+	eval inline_print($page_string);
+}
 
 # replaces
 # <pwp with ";
@@ -42,7 +86,7 @@ sub inline_print{
 		$page_text = $page_text . '";';
 	}
 
-	$page_text =~ s/\t//g;;
+	$page_text =~ s/\t//g;
 	return $page_text;
 }
 
@@ -80,6 +124,7 @@ else{
 # acctually exists
 if ($filename ne '') {
 	# open the file
+	#print $filename . "\n";
 	open(my $fh, '<:encoding(UTF-8)', $filename)
 	or die "Could not open file '$filename' $!";
 
