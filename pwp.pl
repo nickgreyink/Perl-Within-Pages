@@ -20,6 +20,8 @@ use File::Basename;
 # run in any perl 5.
 use 5.001;
 
+# Function to give pages the ability to
+# include like PHP
 sub pwp_include{
 # Gets the file name and short path set to
 # the function
