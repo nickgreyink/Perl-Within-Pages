@@ -1,4 +1,7 @@
 # Perl-Within-Pages
+
+The file you want is pwp.pl. Everything else is just to test it.
+
 This is just my little program to embed Perl into webpages and be able to throw things together very quickly.
 
 I like some of the concepts of PHP to be able to include all the different elements into one file and that
