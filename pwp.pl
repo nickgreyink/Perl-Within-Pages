@@ -20,30 +20,54 @@ use File::Basename;
 # run in any perl 5.
 use 5.001;
 
-my $abs_path = "";
-
 sub pwp_include{
+# Gets the file name and short path set to
+# the function
 	my $page_file = $_[0];
-	#print "\n" . $page_file . "\n";
+
+# Initializes the $page_string variable
+# to hold the fincal string that gets
+# send to the eval function
 	my $page_string = "";
-	my $dir = getcwd;
+
+# Splits the file argument sent to the
+# function into an array
 	my @page_file_array = split('/', $page_file);
+
+# Uses the @page_file_array to find the
+# last index which is the file name of
+# the argument file
 	my $page_final_index = $page_file_array[@page_file_array-1];
+
+# Splits the absolute path into array
+# elements to be looped through
 	my @directory_path = split('/', dirname(abs_path($page_file)));
 
+# Loops through the absolute path to
+# find and replace .. in the path
+# (the php way to reach into the
+# parent directory) for a . (the perl
+# way to go into a parent directory) and
+# changes . (the PHP way to find in
+# the same directory) with nothing
+# to look in the same diectory
 	for(my $i = 0; $i <= $#directory_path; $i++){
+# Find the .. in the path
 		if($directory_path[$i] eq ".."){
+# Changes the element form .. to .
 			$directory_path[$i] = ".";
+# Find the . and replaces with nothing
+# to find file in the same folder
 		}elsif($directory_path[$i] eq "."){
+# Replaces . with nothing
 			$directory_path[$i] = undef;
 		}
 	}
-	#print "\n" . join('/', @directory_path) . "/" . $page_final_index . "\n\n";
-	$abs_path = join('/', @directory_path) . "/" . $page_final_index;
-	#print $abs_path . "\n";
+# Joins together the revised 
+# absolute path to the file
+	my $abs_path = join('/', @directory_path) . "/" . $page_final_index;
 	if ($abs_path ne '') {
 	# open the file
-	#print $abs_path . "\n";
 		open(my $fh, '<', $abs_path)
 		or die "Could not open file '$abs_path' $!";
 
