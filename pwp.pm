@@ -1,6 +1,7 @@
-#!/usr/bin/perl
+package pwp;
 
-# This is the file you came for.
+our $VERSION = "0.01";
+
 # Trying to keep it as one file for
 # portability.
 
@@ -127,12 +128,12 @@ my $filename = "";
 # checks if there is a file called
 # imdex.pl in the folder being accessed
 # by pwp
-if(-e "index.pl"){
-	$filename = "index.pl";
+if(-e "index.pwp"){
+	$filename = "index.pwp";
 }
 # checks for default.pl page
-elsif(-e "default.pl"){
-	$filename = "default.pl";
+elsif(-e "default.pwp"){
+	$filename = "default.pwp";
 }
 # this will pull the file given to
 # pwp.pl through the command line
