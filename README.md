@@ -10,6 +10,13 @@ develop templetes completly seperate form the program file.
 
 I'm sure ther are other ways around this, but this is how I do it, anyway.
 
+You can now use regular perl file in the includes. You must start with a .pwp as your index file though.
+(
+    <pwp
+      pwp_include("file.pl");  
+    pwp>
+)
+
 To use PWP use like:
 
 perl.exe pwp.pl your_index_file.pwp
@@ -23,3 +30,4 @@ Open with: <pwp
 Close With: pwp>
 
 Include: pwp_include("./file.pwp");
+(For right now you have to use one dot to go back up to the parent folder instead of two. Working on that.)

@@ -39,6 +39,11 @@ sub pwp_include{
 # elements to be looped through
 	my @directory_path = split('/', dirname(abs_path($page_file)));
 
+    # Indicator to evaluate if the included
+    # page is a perl script or a
+    # PWP page.
+    my $perl_or_pwp = 0;
+
 # Loops through the absolute path to
 # find and replace .. in the path
 # (the php way to reach into the
@@ -71,12 +76,24 @@ sub pwp_include{
 	# and add each row to a variable
 		while (my $row = <$fh>) {
 			chomp $row;
+            if (index($row, "<pwp") == -1) {
+                $perl_or_pwp = 1;
+            } elsif (index($row, "pwp>") == -1){
+                $perl_or_pwp = 1;
+            }
 			$page_string = $page_string . $row . "\n";
 		}
 	}else{
 		print "This file does not exist.";
 	}
-	eval inline_print($page_string);
+
+    # If the included file is a perl file it
+    # will equal 1 and just 
+    if($perl_or_pwp == 1){
+        eval $page_string;
+    }else{
+	    eval inline_print($page_string);
+    }
 }
 
 # replaces
