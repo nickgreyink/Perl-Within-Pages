@@ -14,9 +14,7 @@ You can now use regular perl file in the includes. You must start with a .pwp as
 
 Ex. :
 
-<pwp
-    pwp_include("file.pl");  
-pwp>
+<pwp pwp_include("file.pl"); pwp>
 
 To use PWP use like:
 
