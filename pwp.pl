@@ -1,10 +1,3 @@
-package pwp;
-
-our $VERSION = "0.01";
-
-# Trying to keep it as one file for
-# portability.
-
 # Use strict to make sure pwp follows perl
 # syntax.
 use strict;
