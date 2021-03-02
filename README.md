@@ -21,8 +21,6 @@ perl.exe pwp.pl your_index_file.pwp
 
 Here is a PHP to Perl Within Pages conversion tool:
 
-PHP -> PWP
-
 Open with: <pwp
 
 Close With: pwp>
