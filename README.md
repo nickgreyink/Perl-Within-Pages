@@ -13,7 +13,6 @@ I'm sure ther are other ways around this, but this is how I do it, anyway.
 You can now use regular perl file in the includes. You must start with a .pwp as your index file though.
 
 Ex. :
-
 <pwp pwp_include("file.pl"); pwp>
 
 To use PWP use like:
