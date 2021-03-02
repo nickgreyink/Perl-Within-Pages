@@ -4,6 +4,8 @@ The file you want is pwp.pl. Everything else is just to test it.
 
 This is just my little script to embed Perl into webpages and be able to throw things together very quickly.
 
+I'm trying to figure out how to turn it into a pragma before perl 7 rolls out.
+
 I like some of the concepts of PHP to be able to include all the different elements into one file and that
 file is called by the user and run to use all the part in the programs. Unlike in normal perl where you mush
 develop templetes completly seperate from the program file.
