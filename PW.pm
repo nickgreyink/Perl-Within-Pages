@@ -1,3 +1,11 @@
+
+# Define the names of the Perl Within
+# Pages pragma.
+package PW;
+
+require Exporter;
+@EXPORT = qw(PW_include);
+
 # Use strict to make sure pwp follows perl
 # syntax.
 use strict;
@@ -14,9 +22,30 @@ use File::Basename;
 # run in any perl 5.
 use 5.001;
 
+BEGIN {
+# Make sure the pragma is called properly.
+# Stole this form Strict.pm in metacpan
+die sprintf "Incorrect use of pragma '%s' at %s line %d.\n", __PACKAGE__, +(caller)[1,2]
+    if __FILE__ !~ ( '(?x) \b     '.__PACKAGE__.'  \.pmc? \z' )
+    && __FILE__ =~ ( '(?x) \b (?i:'.__PACKAGE__.') \.pmc? \z' );
+}
+
+# Defines what version of PWP the user
+# is invoking.
+# CURRENT STATUS: Very Alpha
+our $VERSION = "0.001";
+
+sub import {
+    $^H{"myint/in_effect"} = 1;
+}
+
+sub unimport {
+    $^H{"myint/in_effect"} = 0;
+}
+
 # Function to give pages the ability to
 # include like PHP
-sub pwp_include{
+sub PW_include{
 # Gets the file name and short path set to
 # the function
 	my $page_file = $_[0];
@@ -175,3 +204,5 @@ if ($filename ne '') {
 
 # eval all the string as perl code
 eval inline_print($page_string);
+
+1;
