@@ -1,7 +1,5 @@
 # Perl-Within-Pages
 
-No. No pragma. Maybe later. Going back to a script.
-
 The file you want is pwp.pl. Everything else is just to test it.
 
 This is just my little script to embed Perl into webpages and be able to throw things together very quickly.
@@ -27,3 +25,7 @@ Open with: <pwp
 Close With: pwp>
 
 Include: pwp_include("./file.pwp"); (For right now you have to use one dot to go back up to the parent folder instead of two. Working on that.)
+
+Notes:
+
+Working on the security of the script to make sure it works okay. Please let me know if you find any glitches or security issues and out them in the issues tab. Thanks.
