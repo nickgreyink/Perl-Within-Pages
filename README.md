@@ -1,6 +1,6 @@
 # Perl-Within-Pages
 
-Trying to turn PWP into a pragma. Bear with me.
+No. No pragma. Maybe later. Going back to a script.
 
 The file you want is pwp.pl. Everything else is just to test it.
 

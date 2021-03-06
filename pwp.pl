@@ -1,11 +1,3 @@
-
-# Define the names of the Perl Within
-# Pages pragma.
-package PW;
-
-require Exporter;
-@EXPORT = qw(PW_include);
-
 # Use strict to make sure pwp follows perl
 # syntax.
 use strict;
@@ -21,27 +13,6 @@ use File::Basename;
 # if it can run there it should be able to
 # run in any perl 5.
 use 5.001;
-
-BEGIN {
-# Make sure the pragma is called properly.
-# Stole this form Strict.pm in metacpan
-die sprintf "Incorrect use of pragma '%s' at %s line %d.\n", __PACKAGE__, +(caller)[1,2]
-    if __FILE__ !~ ( '(?x) \b     '.__PACKAGE__.'  \.pmc? \z' )
-    && __FILE__ =~ ( '(?x) \b (?i:'.__PACKAGE__.') \.pmc? \z' );
-}
-
-# Defines what version of PWP the user
-# is invoking.
-# CURRENT STATUS: Very Alpha
-our $VERSION = "0.001";
-
-sub import {
-    $^H{"myint/in_effect"} = 1;
-}
-
-sub unimport {
-    $^H{"myint/in_effect"} = 0;
-}
 
 # Function to give pages the ability to
 # include like PHP
@@ -164,6 +135,10 @@ my $page_string = "";
 # name of the file being loaded
 my $filename = "";
 
+# Hold the variable that will turn
+# to 1 if detects signs of pwp code
+my $pwp_or_perl = 0;
+
 # checks if there is a file called
 # imdex.pl in the folder being accessed
 # by pwp
@@ -198,11 +173,18 @@ if ($filename ne '') {
 # and add each row to a variable
 	while (my $row = <$fh>) {
 		chomp $row;
+        if (index($row, "<pwp") != -1) {
+            $pwp_or_perl = 1;
+        }elsif (index($row, "pwp>") != -1){
+            $pwp_or_perl = 1;
+        }
 		$page_string = $page_string . $row . "\n";
 	}
 }
 
 # eval all the string as perl code
-eval inline_print($page_string);
-
-1;
+if($pwp_or_perl == 1){
+    eval inline_print($page_string);
+} else {
+    eval $page_string;
+}
