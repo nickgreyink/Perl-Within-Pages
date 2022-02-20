@@ -1,10 +1,13 @@
 # Use strict to make sure pwp follows perl
 # syntax.
 use strict;
+
 # Use warnings to maximum warnings for pwp
 # in case it does not work.
 use warnings;
 
+# The libraries needed to make pwp_include
+# work.
 use Cwd;
 use Cwd 'abs_path';
 use File::Basename;
@@ -142,12 +145,12 @@ my $pwp_or_perl = 0;
 # checks if there is a file called
 # imdex.pl in the folder being accessed
 # by pwp
-if(-e "index.pwp"){
-	$filename = "index.pwp";
+if(-e "index.pl"){
+	$filename = "index.pl";
 }
 # checks for default.pl page
-elsif(-e "default.pwp"){
-	$filename = "default.pwp";
+elsif(-e "default.pl"){
+	$filename = "default.pl";
 }
 # this will pull the file given to
 # pwp.pl through the command line
