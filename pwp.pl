@@ -7,7 +7,7 @@ use strict;
 use warnings;
 
 # The libraries needed to make pwp_include
-# work.
+# work
 use Cwd;
 use Cwd 'abs_path';
 use File::Basename;
@@ -19,7 +19,7 @@ use 5.001;
 
 # Function to give pages the ability to
 # include like PHP
-sub PW_include{
+sub pwp_include{
 # Gets the file name and short path set to
 # the function
 	my $page_file = $_[0];
@@ -58,6 +58,7 @@ sub PW_include{
 	for(my $i = 0; $i <= $#directory_path; $i++){
 # Find the .. in the path
 		if($directory_path[$i] eq ".."){
+        print $directory_path[$i];
 # Changes the element form .. to .
 			$directory_path[$i] = ".";
 # Find the . and replaces with nothing
