@@ -1,4 +1,9 @@
 <pwp
-pwp_include("./hi/hi.pl");
+use strict;
+pwp_include("bob.pl");
 print("hi man");
+pwp>
+hi
+<pwp
+print("bob");
 pwp>

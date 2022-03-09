@@ -15,13 +15,16 @@ FEATURES:
 1. Uses pwp_include(); to include file like PHP's include.
     a. You can use regular perl file in the pwp_includes. You must start with a .pwp as your index file though.
     b. Ex. : <pwp pwp_include("file.pl"); pwp>
-    c. To go up the parent tree you have to go ./file.pl not ../file.pl. Working on fixing this.
-2. Can use any file as you index file like:
-    perl.exe pwp.pl your_index_file.pwp
+    c. To go up the parent tree you have to go ./file.pl not ../file.pl.
+    d. To use a file in the same folder just use file.pl not ./file.pl.
+3. Can use any file as you index file like:
+    perl.exe pwp.pl your_index_file.pl
     a. Will look for index.pl or default.pl automatically though.
-3. PWP segments
+4. PWP segments
     a. Start with: <pwp
     b. End with: pwp>
+
+If your file is pure perl you don not need <pwp pwp> to use. You can also use pwp_include() in pure Perl. You just need <pwp pwp> if you are including regular HTML.
 
 As far as I know all of perl can be used within the <pwp pwp> tags. Please let me know if there is something that doesn't in issues.
 
@@ -29,4 +32,4 @@ Notes:
 
 Working on the security of the script to make sure it works okay. Please let me know if you find any glitches or security issues and out them in the issues tab. Thanks.
 
-OH! I can make is a CPAN App! App::PWP and run command line! Not there yet, but someday.
+Trying to get this to work with CGI or FastCGI, but can't seem to find info about how to get an interpreter to ruin FastCGI on the server side.

@@ -1,3 +1,5 @@
+#!/usr/bin/perl
+
 # Use strict to make sure pwp follows perl
 # syntax.
 use strict;
@@ -47,27 +49,6 @@ sub pwp_include{
     # PWP page.
     my $perl_or_pwp = 0;
 
-# Loops through the absolute path to
-# find and replace .. in the path
-# (the php way to reach into the
-# parent directory) for a . (the perl
-# way to go into a parent directory) and
-# changes . (the PHP way to find in
-# the same directory) with nothing
-# to look in the same diectory
-	for(my $i = 0; $i <= $#directory_path; $i++){
-# Find the .. in the path
-		if($directory_path[$i] eq ".."){
-        print $directory_path[$i];
-# Changes the element form .. to .
-			$directory_path[$i] = ".";
-# Find the . and replaces with nothing
-# to find file in the same folder
-		}elsif($directory_path[$i] eq "."){
-# Replaces . with nothing
-			$directory_path[$i] = undef;
-		}
-	}
 # Joins together the revised 
 # absolute path to the file
 	my $abs_path = join('/', @directory_path) . "/" . $page_final_index;
