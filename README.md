@@ -26,6 +26,8 @@ FEATURES:
 
 If your file is pure perl you don not need <pwp pwp> to use. You can also use pwp_include() in pure Perl. You just need <pwp pwp> if you are including regular HTML.
 
+Change the shebang to point to your perl executable.
+
 As far as I know all of perl can be used within the <pwp pwp> tags. Please let me know if there is something that doesn't in issues.
 
 Notes:
